@@ -5,21 +5,21 @@ const output = document.querySelector("#ot");
 
 function palemdromeORNot(){
     const date = birthdate.value;
-    console.log(date);
+    // console.log(date);
     const newType = date.split("-");
-    console.log(newType);
+    // console.log(newType);
   var year = newType[0];
     var month =newType[1];
     var day = newType[2];
     const newDate = day+ month+ year;
-    console.log("Date "+ newDate)
+    // console.log("Date "+ newDate)
 
     const splitDate = newDate.split('');
-    console.log("splited "+ splitDate);
+    // console.log("splited "+ splitDate);
     const reverseDate = splitDate.reverse();
-    console.log("reverse "+ reverseDate);
+    // console.log("reverse "+ reverseDate);
     const joinedDate = reverseDate.join('');
-    console.log("joined  " + joinedDate)
+    // console.log("joined  " + joinedDate)
 
     if(joinedDate === newDate){
        output.innerText="Your birthdate is paledrome ";
