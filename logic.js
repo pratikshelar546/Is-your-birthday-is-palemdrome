@@ -48,6 +48,9 @@ function checkAllDateFormat(date){
         }
 
     }
+    if(flag){
+      output.innerText ="hello"
+    }
     return flag;
 }
 function isLeapYear(year){
@@ -119,13 +122,96 @@ nextDate = nextDay(nextDate);
 }
 
 
+//past palemdrome date
 
-var date = {
-    day: 8,
-    month:8,
-    year:2021
+function isLeapPastYear(year){
+  if(year % 400 === 0)
+    return true;
+
+    if(year % 100 === 0)
+    return false;
+
+    if(year % 4 === 0)
+    return true;
+
+    return false
 }
 
-console.log(getNextPalemdromeDate(date));
-//  console.log(checkStrIsPalemdrome("oppo"));
-//  console.log(checkStrIsPalemdrome("nayan"));
+function pritDay(date){
+    var day = date.day-1;
+    var month = date.month;
+    var year = date.year;
+    
+    var dayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    
+    if(month ===3){
+      if(day =1){
+        if(isLeapYear(year)){
+          day = 29;
+          month--;
+      
+      }else{
+        
+          day =28;
+          month--;
+        }
+      
+       
+      }
+      
+    }else{
+      if(day > dayInMonth[month - 1]){
+         day = 1;
+        month++;
+      }
+    }
+    if(month > 12){
+      month = 1;
+      year++;
+    }
+    return {
+      day :day,
+      month: month,
+      year:year
+    }
+}
+function getNextPalemdromeDate(date){
+  var ctr = 0;
+var nextDate= nextDay(date);
+while(1){
+  ctr++;
+
+  var listResult = checkAllDateFormat(nextDate);
+
+    if(listResult){
+      return[ctr,nextDate];
+
+}
+nextDate = nextDay(nextDate);
+}
+
+}
+
+
+const birthdate = document.querySelector("#date");
+const click = document.querySelector("#btn");
+const output = document.querySelector("#ot");
+
+function clickhandler(){
+  const bdayStr = birthdate.value;
+  if(bdayStr !== ''){
+    const bdayDate = bdayStr.split('-');
+    var date = {
+      day: Number(bdayDate[2]),
+      month:Number(bdayDate[1]),
+      year: Number(bdayDate[0])
+    };
+    var dateStrr = checkAllDateFormat(date);
+    
+    console.log(dateStrr);
+
+  }
+  
+}
+
+click.addEventListener("click", clickhandler);
