@@ -35,7 +35,7 @@ function allDateFormat(date){
     const ddmmyy = dateStr.day + dateStr.month + dateStr.year.slice(-2); 
     const mmddyy = dateStr.month + dateStr.day + dateStr.year.slice(-2);
     const yymmdd = dateStr.year.slice(-2) + dateStr.month + dateStr.day;  
-    return [ddmmyyyy , mmddyyyy , yyyymmdd , ddmmyy , yymmdd]
+    return [ddmmyyyy , mmddyyyy , yyyymmdd ,mmddyy, ddmmyy , yymmdd]
 }
 
 function checkAllDateFormat(date){
@@ -91,7 +91,7 @@ function nextDay(date){
       }
     }
     if(month > 12){
-      month =1;
+      month = 1;
       year++;
     }
     return {
@@ -109,20 +109,21 @@ while(1){
   var listResult = checkAllDateFormat(nextDate);
 
     if(listResult){
+      return[ctr,nextDate];
 
-      console.log(ctr, nextDate)
-    }
-    nextDate = nextDay(nextDate);
-  }
+}
+nextDate = nextDay(nextDate);
+}
+
   // return true
 }
 
 
 
 var date = {
-    day: 3,
-    month: 12,
-    year:2020
+    day: 8,
+    month:8,
+    year:2021
 }
 
 console.log(getNextPalemdromeDate(date));
