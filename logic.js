@@ -126,26 +126,32 @@ function isLeapPastYear(year) {
 
 function pritDay(date) {
   var day = date.day - 1;
+
   var month = date.month;
   var year = date.year;
 
   var dayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  if (month === 2) {
-    if (isLeapYear(year)) {
-   day = 29;
-    }else{
-      day=28;
+  if (month === 3) {
+    if ((day = 1)) {
+      if (isLeapYear(year)) {
+        day = 29;
+        month--;
+      } else {
+        day = 28;
+        month--;
+      }
     }
   } else {
-    if (day < 1) { //feb 1
+    if (day < 1) {
+      //feb 1
       day = dayInMonth[month - 2]; //day =31
       month--;
     }
   }
   if (month < 1) {
     month = 12;
-    day=dayInMonth[month - 1];
+    day = dayInMonth[month - 1];
     year--;
   }
   return {
@@ -169,32 +175,32 @@ function getNextPalemdromeDate(date) {
   }
 }
 
-function getPrivpalemdromeDate(date){
+function getPrivpalemdromeDate(date) {
   var counter = 0;
   var privDate = pritDay(date);
-  
-  while(1){
+
+  while (1) {
     counter++;
     var privListResult = checkAllDateFormat(privDate);
-    if(privListResult){
-      return[counter, privDate];
+    if (privListResult) {
+      return [counter, privDate];
     }
     privDate = pritDay(privDate);
+    // console.log(privDate);
   }
 }
 
-function compareNextAndPastDate(date){
-  var nexDate= getNextPalemdromeDate(date);
-  var pridate = getPrivpalemdromeDate(date);
-  console.log(nexDate);
-  console.log(pridate);
-  console.log("next Palemdrome date is "+ nexDate);
-  console.log("privous palemdrome date is "+ pridate);
-  if(nexDate > pridate){
-    
-    console.log("nearest date is " + pridate);
-  }else{
-    console.log("nearest date is " + nexDate);
+function compareNextAndPastDate(date) {
+ const[ctr,nexDate] = getNextPalemdromeDate(date);
+  const [counter,pridate] = getPrivpalemdromeDate(date);
+  console.log(ctr,nexDate);
+  console.log(counter,pridate);
+  console.log("next Palemdrome date is " + nexDate.day);
+  console.log("privous palemdrome date is " + pridate);
+  if (ctr > counter) {
+    console.log("nearest date is " + pridate.day +"-" + pridate.month +"-" + pridate.year);
+  } else {
+    console.log("nearest date is " + nexDate.day +"-" + nexDate.month +"-" + nexDate.year);
   }
 }
 // var date={
@@ -224,4 +230,3 @@ function clickhandler() {
 }
 
 click.addEventListener("click", clickhandler);
-
