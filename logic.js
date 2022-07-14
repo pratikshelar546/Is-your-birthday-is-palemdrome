@@ -133,13 +133,14 @@ function pritDay(date) {
   var dayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   if (month === 3) {
-    if ((day = 1)) {
+    if ((day < 1)) {
       if (isLeapYear(year)) {
-        day = 29;
+        day = 30;
         month--;
       } else {
-        day = 28;
+        day = 29;
         month--;
+      
       }
     }
   } else {
@@ -186,7 +187,7 @@ function getPrivpalemdromeDate(date) {
       return [counter, privDate];
     }
     privDate = pritDay(privDate);
-    // console.log(privDate);
+
   }
 }
 
@@ -196,11 +197,11 @@ function compareNextAndPastDate(date) {
   console.log(ctr,nexDate);
   console.log(counter,pridate);
   console.log("next Palemdrome date is " + nexDate.day);
-  console.log("privous palemdrome date is " + pridate);
+  console.log("privous palemdrome date is " + pridate.day);
   if (ctr > counter) {
-    console.log("nearest date is " + pridate.day +"-" + pridate.month +"-" + pridate.year);
+   output.innerText= "The nearest palindrome date is  " + pridate.day +"-" + pridate.month +"-" + pridate.year + ", you missed by " + counter + " Days";
   } else {
-    console.log("nearest date is " + nexDate.day +"-" + nexDate.month +"-" + nexDate.year);
+   output.innerText = "The nearest palindrome date is  " + nexDate.day +"-" + nexDate.month +"-" + nexDate.year + ", you missed by " + ctr + " Days";
   }
 }
 // var date={
