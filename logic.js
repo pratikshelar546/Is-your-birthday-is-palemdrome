@@ -45,9 +45,6 @@ function checkAllDateFormat(date) {
       break;
     }
   }
-  if (flag) {
-    output.innerText = "hello";
-  }
   return flag;
 }
 function isLeapYear(year) {
@@ -194,10 +191,7 @@ function getPrivpalemdromeDate(date) {
 function compareNextAndPastDate(date) {
  const[ctr,nexDate] = getNextPalemdromeDate(date);
   const [counter,pridate] = getPrivpalemdromeDate(date);
-  console.log(ctr,nexDate);
-  console.log(counter,pridate);
-  console.log("next Palemdrome date is " + nexDate.day);
-  console.log("privous palemdrome date is " + pridate.day);
+
   if (ctr > counter) {
    output.innerText= "The nearest palindrome date is  " + pridate.day +"-" + pridate.month +"-" + pridate.year + ", you missed by " + counter + " Days";
   } else {
@@ -224,9 +218,15 @@ function clickhandler() {
       month: Number(bdayDate[1]),
       year: Number(bdayDate[0]),
     };
-    var dateStrr = compareNextAndPastDate(date);
+    var ispalindrome = checkAllDateFormat(date);
+    if(ispalindrome){
+      output.innerText = "yeh! Your birthdate is palindrome";
+    }else{
 
-    console.log(dateStrr);
+      var dateStrr = compareNextAndPastDate(date);
+      
+ 
+    }
   }
 }
 
